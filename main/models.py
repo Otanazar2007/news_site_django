@@ -19,3 +19,18 @@ class News(models.Model):
     class Meta:
         verbose_name = "Новости"
         verbose_name_plural = "Добавить новость"
+
+class Commentary(models.Model):
+    news_name = models.ForeignKey(News, on_delete=models.CASCADE, related_name='commentaries')
+    user_name = models.CharField(max_length=20)
+    comm = models.TextField(max_length=150)
+    comm_photo = models.FileField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    urls = models.ForeignKey(News, on_delete=models.CASCADE, related_name='url_commentaries')
+
+    def __str__(self):
+        return self.user_name
+
+    class Meta:
+        verbose_name = "Добавить комментарий"
+        verbose_name_plural = "Комментарии"
