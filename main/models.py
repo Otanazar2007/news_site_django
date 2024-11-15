@@ -34,3 +34,25 @@ class Commentary(models.Model):
     class Meta:
         verbose_name = "Добавить комментарий"
         verbose_name_plural = "Комментарии"
+
+class Statistics(models.Model):
+    news_name = models.ForeignKey(News, on_delete=models.CASCADE, related_name='name_of_news')
+    news_url = models.ForeignKey(News, on_delete=models.CASCADE, related_name='url_news')
+    commentary = models.IntegerField()
+
+    def __str__(self):
+        return self.news_name
+
+    class Meta:
+        verbose_name = 'Накрутить просмотры'
+        verbose_name_plural = 'Просмотры'
+
+class Created_news(models.Model):
+    created_news = models.ForeignKey(News, on_delete=models.CASCADE, default='created_news')
+
+    def __str__(self):
+        return self.created_news
+
+    class Meta:
+        verbose_name = 'Новости'
+        verbose_name_plural = 'Новости'
